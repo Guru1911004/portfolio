@@ -93,95 +93,114 @@ export default function BookGalaxy() {
     if (!svgRef.current) return;
 
     const width = 800;
-    const height = 700; // Increased height for more books
+    const height = 550;
 
     const svg = d3.select(svgRef.current)
       .attr("viewBox", `0 0 ${width} ${height}`)
-      .attr("preserveAspectRatio", "xMidYMid meet");
+      .style("overflow", "visible");
 
     svg.selectAll("*").remove();
 
+    // Group center coordinates for clustering
+    const centers: { [key: string]: { x: number, y: number } } = {
+      "Business": { x: 200, y: 150 },
+      "Memoirs": { x: 600, y: 150 },
+      "Philosophy": { x: 400, y: 275 },
+      "Entrepreneurship": { x: 200, y: 400 },
+      "Productivity": { x: 600, y: 400 },
+      "Soft Skills": { x: 400, y: 100 },
+      "Psychology": { x: 100, y: 275 },
+      "Tech": { x: 700, y: 275 },
+      "Creative": { x: 400, y: 450 }
+    };
+
     const colorScale = d3.scaleOrdinal()
-      .domain(["Business", "Memoirs", "Philosophy", "Entrepreneurship", "Tech", "Productivity", "Soft Skills", "Psychology", "Creative"])
-      .range(["#60a5fa", "#f472b6", "#a78bfa", "#fbbf24", "#34d399", "#94a3b8", "#f87171", "#818cf8", "#c084fc"]);
+      .domain(Object.keys(centers))
+      .range(["#60a5fa", "#f472b6", "#a78bfa", "#fbbf24", "#94a3b8", "#f87171", "#818cf8", "#34d399", "#c084fc"]);
 
     const simulation = d3.forceSimulation(bookData as any)
-      .force("x", d3.forceX(width / 2).strength(0.07))
-      .force("y", d3.forceY(height / 2).strength(0.07))
-      .force("collide", d3.forceCollide((d: any) => d.val * 6 + 4))
-      .force("charge", d3.forceManyBody().strength(-20));
+      .force("x", d3.forceX((d: any) => centers[d.cat]?.x || width / 2).strength(0.15))
+      .force("y", d3.forceY((d: any) => centers[d.cat]?.y || height / 2).strength(0.15))
+      .force("collide", d3.forceCollide((d: any) => d.val * 5 + 3))
+      .force("charge", d3.forceManyBody().strength(-5))
+      .stop();
+
+    // Manually run simulation for better performance on load
+    for (let i = 0; i < 120; ++i) simulation.tick();
 
     const nodes = svg.append("g")
       .selectAll("g")
       .data(bookData)
       .join("g")
-      .style("cursor", "pointer");
+      .attr("transform", (d: any) => `translate(${d.x},${d.y})`);
 
     nodes.append("circle")
-      .attr("r", (d) => d.val * 6)
+      .attr("r", (d) => d.val * 5)
       .attr("fill", (d) => colorScale(d.cat) as string)
-      .attr("fill-opacity", 0.4)
+      .attr("fill-opacity", 0.3)
       .attr("stroke", (d) => colorScale(d.cat) as string)
-      .attr("stroke-width", 1.5);
+      .attr("stroke-width", 1.5)
+      .attr("class", "transition-all duration-300 hover:fill-opacity-100");
 
-    // Initial text (hidden or small)
+    // Hidden labels
     const labels = nodes.append("text")
       .text((d) => d.title)
       .attr("text-anchor", "middle")
-      .attr("dy", ".3em")
+      .attr("dy", "-1.2em")
       .attr("fill", "white")
-      .style("font-size", "0px") // Hide text initially to prevent clutter
+      .style("font-size", "0px")
       .style("pointer-events", "none")
-      .style("font-weight", "500");
+      .style("text-shadow", "0 2px 4px rgba(0,0,0,0.5)");
 
     nodes.on("mouseenter", function(event, d) {
-      d3.select(this).select("circle")
-        .transition().duration(200)
-        .attr("fill-opacity", 1)
-        .attr("r", d.val * 8)
-        .attr("stroke-width", 3);
+      const g = d3.select(this);
+      g.raise(); // Bring to front
       
-      d3.select(this).select("text")
-        .transition().duration(200)
-        .style("font-size", "12px");
+      g.select("circle")
+        .transition().duration(250)
+        .attr("r", d.val * 8)
+        .attr("fill-opacity", 1)
+        .attr("stroke-width", 2);
+      
+      g.select("text")
+        .transition().duration(250)
+        .style("font-size", "14px");
     }).on("mouseleave", function(event, d) {
-      d3.select(this).select("circle")
-        .transition().duration(200)
-        .attr("fill-opacity", 0.4)
-        .attr("r", d.val * 6)
+      const g = d3.select(this);
+      
+      g.select("circle")
+        .transition().duration(250)
+        .attr("r", d.val * 5)
+        .attr("fill-opacity", 0.3)
         .attr("stroke-width", 1.5);
       
-      d3.select(this).select("text")
-        .transition().duration(200)
+      g.select("text")
+        .transition().duration(250)
         .style("font-size", "0px");
     });
 
-    simulation.on("tick", () => {
-      nodes.attr("transform", (d: any) => {
-        // Simple boundary clamping
-        d.x = Math.max(50, Math.min(width - 50, d.x));
-        d.y = Math.max(50, Math.min(height - 50, d.y));
-        return `translate(${d.x},${d.y})`;
-      });
-    });
   }, []);
 
   return (
-    <div className="w-full bg-slate-900/20 backdrop-blur-sm rounded-3xl border border-slate-800/50 p-6 shadow-inner">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+    <div className="w-full bg-slate-900/40 backdrop-blur-md rounded-3xl border border-slate-800/60 p-8 shadow-2xl relative overflow-hidden group">
+      <div className="flex justify-between items-start mb-4 relative z-10">
         <div>
-          <h3 className="text-white text-xl font-bold tracking-tight">The Literary Galaxy</h3>
-          <p className="text-slate-500 text-xs uppercase tracking-widest mt-1 font-mono">Hover to explore 70+ influences</p>
-        </div>
-        <div className="flex flex-wrap gap-2 max-w-md justify-end">
-          {["Business", "Philosophy", "Memoirs", "Tech", "Psychology"].map((cat) => (
-            <span key={cat} className="text-[9px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 border border-slate-700">
-              {cat}
-            </span>
-          ))}
+          <h3 className="text-white text-2xl font-bold tracking-tight">The Literary Orbit</h3>
+          <p className="text-slate-500 text-xs font-mono uppercase tracking-widest mt-1">
+            Hover to decode my intellectual architecture
+          </p>
         </div>
       </div>
-      <svg ref={svgRef} className="w-full h-auto min-h-[400px]" />
+      
+      <div className="flex flex-wrap gap-2 mb-4 relative z-10">
+         {["Business", "Philosophy", "Memoirs", "Tech", "Productivity"].map(tag => (
+           <span key={tag} className="text-[10px] px-2 py-1 bg-slate-800/50 rounded-md border border-slate-700 text-slate-400">
+             {tag}
+           </span>
+         ))}
+      </div>
+
+      <svg ref={svgRef} className="w-full h-auto min-h-[500px]" />
     </div>
   );
 }
