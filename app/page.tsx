@@ -1,52 +1,33 @@
 import SkillCloud from '../components/SkillCloud';
+import BookGalaxy from '../components/BookGalaxy'; // Add this import
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-[#020617] text-slate-200 selection:bg-blue-500/30">
-      {/* Header / Hero */}
-      <nav className="p-6 flex justify-between items-center max-w-7xl mx-auto">
-        <span className="font-mono font-bold text-xl tracking-tighter text-white">GMT.SINGH</span>
-        <div className="flex gap-6 text-sm font-medium text-slate-400">
-          <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-          <a href="#about" className="hover:text-white transition-colors">About</a>
-        </div>
-      </nav>
+      {/* ... previous Hero and Story sections ... */}
 
-      <section className="px-6 pt-20 pb-32 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-          <h1 className="text-6xl font-extrabold text-white leading-tight mb-6">
-            Software for <br/>
-            <span className="bg-gradient-to-r from-blue-400 via-emerald-400 to-amber-400 bg-clip-text text-transparent">
-              The Intelligence Era.
-            </span>
-          </h1>
-          <p className="text-lg text-slate-400 max-w-md mb-8 leading-relaxed">
-            I'm a Computer Science Engineer in Victoria specializing in 
-            <strong> Large Language Models</strong> and <strong>Interactive Data Systems</strong>. 
-            Currently building <em>Sprache</em>.
-          </p>
-          <div className="flex gap-4">
-            <a href="mailto:your-email@example.com" className="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-blue-400 transition-all">
-              Get In Touch
-            </a>
+      {/* New Book Section */}
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="lg:col-span-1">
+            <h2 className="text-4xl font-bold text-white mb-6">Unconventional <br/> Influences</h2>
+            <p className="text-slate-400 leading-relaxed mb-6">
+              My engineering philosophy is shaped by more than just documentation. 
+              From the Stoicism of <em>Marcus Aurelius</em> to the relentless 
+              drive in <em>Shoe Dog</em>, these works inform how I build systems: 
+              with resilience, purpose, and clarity.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {["Business", "Memoirs", "Philosophy", "Tech"].map(tag => (
+                <span key={tag} className="px-3 py-1 bg-slate-800 rounded-full text-xs text-slate-300 border border-slate-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-
-        {/* The D3 Skill Ecosystem */}
-        <div className="relative">
-          <SkillCloud />
-        </div>
-      </section>
-
-      {/* Story Section */}
-      <section id="about" className="bg-slate-900/30 py-32 border-y border-slate-800/50">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-8">Engineering with Intent</h2>
-          <p className="text-xl text-slate-400 leading-relaxed mb-12">
-            "While most developers are building interfaces, I’m building systems that think. 
-            By leveraging <strong>RAG</strong> architectures and <strong>Vector Databases</strong>, 
-            I bridge the gap between static code and dynamic intelligence."
-          </p>
+          <div className="lg:col-span-2">
+            <BookGalaxy />
+          </div>
         </div>
       </section>
     </main>
