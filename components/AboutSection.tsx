@@ -11,7 +11,7 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="text-white font-bold text-sm">Computer Science Engineer</h4>
-                <p className="text-slate-400 text-xs mt-1">Rigorous foundation in algorithms, systems design, and mathematical computation.</p>
+                <p className="text-slate-400 text-xs mt-1">Strong Foundation in System Design, Software Engineering and Generative AI.</p>
               </div>
             </li>
             <li className="flex items-start gap-4">
@@ -38,7 +38,7 @@ export default function AboutSection() {
         <div className="lg:col-span-7 flex flex-col justify-center">
           <h2 className="text-3xl font-extrabold text-white mb-6">About Me</h2>
           <p className="text-slate-300 text-base leading-relaxed mb-6">
-            I am a Software Engineer focused on constructing intelligence systems that bridge high-dimensional machine outputs with intuitive user interfaces. My expertise spans vector databases, custom RAG pipelines, and interactive visual data representations.
+            A Computer Science Graduate 
           </p>
           <p className="text-slate-400 text-base leading-relaxed mb-8">
             Whether building resilient backend APIs or crafting high-performance D3 charts for complex graphs, I focus on clean maintainable code and performance-driven solutions.

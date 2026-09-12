@@ -9,13 +9,13 @@ export default function ContactSection() {
 
         <div className="flex flex-wrap justify-center gap-4">
           <a
-            href="mailto:your-email@example.com"
+            href="mailto:gurmant1911004@gmail.com"
             className="px-8 py-3.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-lg shadow-blue-500/20 transition-all"
           >
             Send an Email
           </a>
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/Guru1911004"
             target="_blank"
             rel="noopener noreferrer"
             className="px-8 py-3.5 rounded-xl bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 font-bold text-sm transition-all"

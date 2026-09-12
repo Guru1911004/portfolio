@@ -10,19 +10,20 @@ export default function SkillsSection() {
         <div className="p-6 bg-slate-900/30 border border-slate-800 rounded-2xl">
           <h3 className="text-blue-400 font-mono text-xs uppercase font-bold mb-4">Frontend & Viz</h3>
           <ul className="space-y-2 text-sm text-slate-300 font-medium">
-            <li>Next.js / React</li>
+            <li>Next.js / React/ VueJs</li>
             <li>TypeScript</li>
             <li>Tailwind CSS</li>
             <li>D3.js</li>
+            <li>C++ /C#</li>
           </ul>
         </div>
 
         <div className="p-6 bg-slate-900/30 border border-slate-800 rounded-2xl">
           <h3 className="text-emerald-400 font-mono text-xs uppercase font-bold mb-4">AI & Machine Learning</h3>
           <ul className="space-y-2 text-sm text-slate-300 font-medium">
-            <li>LangChain / LlamaIndex</li>
+            <li>LangChain</li>
             <li>RAG Architecture</li>
-            <li>Vector Databases (Pinecone, Chroma)</li>
+            <li>Vector Databases (Pinecone))</li>
             <li>TensorFlow / PyTorch</li>
           </ul>
         </div>

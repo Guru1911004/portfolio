@@ -22,8 +22,8 @@ export default function HeroSection({ activeTab, setActiveTab }: HeroSectionProp
           </span>
         </h1>
         <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-          Computer Science Engineer specializing in <strong>RAG Architecture</strong> and <strong>Data Visualization</strong>. 
-          I build systems that bridge raw data and human storytelling.
+          Computer Science Engineer specializing in <strong>Software Development</strong> and <strong>Large Language Models</strong>. 
+          I build systems that use Large Language Models to solve old school problems.
         </p>
 
         <div className="flex p-1 bg-slate-900/80 border border-slate-800 rounded-xl w-fit mb-8">

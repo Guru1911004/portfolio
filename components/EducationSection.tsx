@@ -8,9 +8,9 @@ export default function EducationSection() {
 
       <div className="p-8 bg-slate-900/40 border border-slate-800 rounded-3xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
         <div>
-          <span className="text-xs font-mono text-blue-400 uppercase font-bold tracking-wider">Bachelor of Technology / B.S.</span>
-          <h3 className="text-2xl font-bold text-white mt-1">Computer Science Engineering</h3>
-          <p className="text-slate-400 text-sm mt-2">Focus on Artificial Intelligence, Data Structures, Algorithms, and Software Engineering.</p>
+          <span className="text-xs font-mono text-blue-400 uppercase font-bold tracking-wider">Bachelor of Science</span>
+          <h3 className="text-2xl font-bold text-white mt-1">Computer Science @ Swinburne University of Technology, Hawthorn</h3>
+          <p className="text-slate-400 text-sm mt-2">Double Major in Artiticial Intelligence and Software Development (3.3 GPA)</p>
         </div>
         <div className="px-4 py-2 bg-slate-800/60 border border-slate-700/60 rounded-xl text-xs font-mono text-slate-300">
           Graduated / Alumnus
