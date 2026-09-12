@@ -45,8 +45,8 @@ export default function AboutSection() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="p-4 bg-slate-900/30 border border-slate-800/80 rounded-2xl">
-              <span className="text-2xl font-bold text-white block">10+</span>
-              <span className="text-xs text-slate-400">AI Pipelines Built</span>
+              <span className="text-2xl font-bold text-white block">3+</span>
+              <span className="text-xs text-slate-400">Full-Stack Projects</span>
             </div>
             <div className="p-4 bg-slate-900/30 border border-slate-800/80 rounded-2xl">
               <span className="text-2xl font-bold text-white block">100%</span>
