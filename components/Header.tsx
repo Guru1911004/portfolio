@@ -43,7 +43,7 @@ export function Header({ navItems, activeSection, onNavigate }: HeaderProps) {
         </div>
 
         <a
-          href="https://github.com/your-username"
+          href="https://github.com/Guru1911004"
           target="_blank"
           rel="noopener noreferrer"
           className="px-4 py-2 rounded-xl text-xs font-bold text-slate-200 bg-slate-900 border border-slate-800 hover:border-slate-700 transition-all"
